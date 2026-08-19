@@ -106,23 +106,24 @@ The database schema (`database/schema.sql`) implements full relational integrity
 
 ---
 
-## 🔑 Demo Login Accounts
+## 🔑 User Roles & Access
 
-Use these pre-configured credentials to test the platform:
+The platform provides two primary access roles:
 
-| Role | Email | Password | Access Capabilities |
-|---|---|---|---|
-| **Administrator** | `admin@uzhaipu.dev` | `Admin@123` | Control center, Quotation builder, Milestone management, User controls, Reports |
-| **Client (User)** | `user@uzhaipu.dev` | `User@123` | Client dashboard, Post projects, Accept quotes, Approve milestones, Reviews |
-| **Client 2 (Sarah)** | `sarah.chen@fintechpulse.com` | `Client@123` | Completed project showcase with 5-star rating |
+| Role | Default Account Identifier | Access Capabilities |
+|---|---|---|
+| **Administrator** | `admin@uzhaipu.dev` | Control center, Quotation builder, Milestone management, User controls, Reports |
+| **Client (User)** | `user@uzhaipu.dev` | Client dashboard, Post projects, Accept quotes, Approve milestones, Reviews |
+| **Client 2 (Sarah)** | `sarah.chen@fintechpulse.com` | Completed project showcase with 5-star rating |
 
-> 💡 **Quick Fill**: You can also use the **"Demo Admin"** and **"Demo Client"** autofill buttons on the login page (`/login`).
+> 💡 **Login Autofill**: On the development Sign In page (`/login`), click the **"Demo Admin"** or **"Demo Client"** button to automatically populate credentials.
 
 ---
 
 ## ⚙️ Environment Configuration
 
 ### Backend (`server/.env`)
+Create a `.env` file in the `server` directory based on `.env.example`:
 ```env
 PORT=5000
 NODE_ENV=development
@@ -130,13 +131,13 @@ CLIENT_URL=http://localhost:5173
 
 # Database Configuration
 DB_HOST=127.0.0.1
-DB_PORT=3307
+DB_PORT=3306
 DB_USER=root
-DB_PASSWORD=Sam@2026
-DB_NAME=freelancing
+DB_PASSWORD=your_db_password
+DB_NAME=uzhaipu_db
 
 # Security & JWT
-JWT_SECRET=uzhaipu_jwt_super_secure_secret_key_2026_!@#
+JWT_SECRET=your_secure_jwt_secret_key
 JWT_EXPIRES_IN=7d
 
 # File Upload Settings
