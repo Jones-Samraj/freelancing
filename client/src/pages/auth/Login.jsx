@@ -37,10 +37,10 @@ export function Login() {
 
   const handleDemoFill = (role) => {
     if (role === 'admin') {
-      setEmail('admin@workforge.dev');
+      setEmail('admin@uzhaipu.dev');
       setPassword('Admin@123');
     } else {
-      setEmail('user@workforge.dev');
+      setEmail('user@uzhaipu.dev');
       setPassword('User@123');
     }
   };
@@ -53,11 +53,14 @@ export function Login() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-2xl -z-0 pointer-events-none" />
 
           <div className="relative z-10">
-            <Link to="/" className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
-                <Layers className="w-5 h-5" />
+            <Link to="/" className="flex items-center gap-2">
+              <div className="w-9 h-9 rounded-xl bg-white/95 overflow-hidden flex items-center justify-center shadow-md shadow-black/20">
+                <img src="/logo.png" alt="Uzhaipu" className="w-8 h-8 object-contain" />
               </div>
-              <span className="text-xl font-black tracking-tight">WorkForge</span>
+              <div className="leading-none">
+                <span className="text-sm font-black text-white block">உழைப்பு</span>
+                <span className="text-xs font-bold text-blue-200">Uzhaipu</span>
+              </div>
             </Link>
 
             <h2 className="mt-8 text-2xl sm:text-3xl font-black leading-tight">
@@ -143,7 +146,7 @@ export function Login() {
               isLoading={isLoading}
               icon={ArrowRight}
             >
-              Sign In to WorkForge
+              Sign In to Uzhaipu
             </Button>
           </form>
 

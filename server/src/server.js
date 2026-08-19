@@ -10,7 +10,7 @@ async function startServer() {
 
   const server = app.listen(env.PORT, () => {
     console.log(`====================================================`);
-    console.log(`🚀 WorkForge Server running on http://localhost:${env.PORT}`);
+    console.log(`🚀 Uzhaipu Server running on http://localhost:${env.PORT}`);
     console.log(`📡 Environment: ${env.NODE_ENV}`);
     console.log(`🔗 API Base: http://localhost:${env.PORT}/api`);
     console.log(`====================================================`);

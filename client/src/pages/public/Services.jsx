@@ -33,7 +33,7 @@ export function Services() {
           Engineering, Support & Modernization
         </h1>
         <p className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300">
-          Explore our tailored service capabilities. Whether you're architecting a new SaaS or fixing an emergency production bug, WorkForge delivers.
+          Explore our tailored service capabilities. Whether you're architecting a new SaaS or fixing an emergency production bug, Uzhaipu delivers.
         </p>
       </div>
 

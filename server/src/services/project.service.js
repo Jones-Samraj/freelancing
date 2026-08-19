@@ -151,7 +151,9 @@ export async function getProjects({ userId = null, role = 'user', search = '', s
   }
 
   const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
-  const offset = (page - 1) * limit;
+  const numericLimit = Math.max(1, parseInt(limit, 10) || 20);
+  const numericPage = Math.max(1, parseInt(page, 10) || 1);
+  const offset = (numericPage - 1) * numericLimit;
 
   const countQuery = `SELECT COUNT(*) AS total FROM projects p ${whereClause}`;
   const [countResult] = await pool.query(countQuery, params);
@@ -176,7 +178,7 @@ export async function getProjects({ userId = null, role = 'user', search = '', s
     LIMIT ? OFFSET ?
   `;
 
-  const [projects] = await pool.query(dataQuery, [...params, limit, offset]);
+  const [projects] = await pool.query(dataQuery, [...params, numericLimit, offset]);
 
   // Fetch skills for these projects
   if (projects.length > 0) {

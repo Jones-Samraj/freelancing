@@ -22,6 +22,7 @@ import {
 import { Button, Card, Badge } from '../../components/common';
 import { siteConfig } from '../../config/siteConfig';
 import { reviewService } from '../../services/reviewService';
+import { useLanguage } from '../../context/LanguageContext';
 
 /* ── Intersection Observer hook for entrance animations ── */
 function useInView(threshold = 0.15) {
@@ -69,46 +70,47 @@ function AnimatedCounter({ target, suffix = '' }) {
 
 const serviceIconMap = { Code2, Headphones, Wrench, Bug, TrendingUp, Compass, Sparkles };
 
-const steps = [
-  {
-    num: '01',
-    title: 'Post Your Project',
-    desc: 'Describe requirements, select a type, set your budget, and upload reference files.',
-    icon: Sparkles,
-    color: 'from-blue-600 to-indigo-600',
-    glow: 'shadow-blue-500/25'
-  },
-  {
-    num: '02',
-    title: 'Expert Review',
-    desc: 'Our tech lead reviews your request, may ask clarifying questions, and prepares a detailed proposal.',
-    icon: ShieldCheck,
-    color: 'from-indigo-600 to-purple-600',
-    glow: 'shadow-indigo-500/25'
-  },
-  {
-    num: '03',
-    title: 'Accept Quotation',
-    desc: 'Review the itemized proposal, accept it, and a formal contract auto-generates instantly.',
-    icon: CheckCircle2,
-    color: 'from-purple-600 to-pink-600',
-    glow: 'shadow-purple-500/25'
-  },
-  {
-    num: '04',
-    title: 'Track & Deliver',
-    desc: 'Monitor milestones, chat directly with admin, approve deliverables, and manage payments.',
-    icon: TrendingUp,
-    color: 'from-emerald-600 to-cyan-600',
-    glow: 'shadow-emerald-500/25'
-  }
-];
-
-const trustedLogos = ['React', 'Next.js', 'Node.js', 'AWS', 'Docker', 'PostgreSQL', 'MongoDB', 'Python'];
-
 export function Home() {
+  const { t } = useLanguage();
   const [reviews, setReviews] = useState([]);
   const navigate = useNavigate();
+
+  const steps = [
+    {
+      num: '01',
+      title: t('process_step1_title', 'Post Your Project'),
+      desc: t('process_step1_desc', 'Describe requirements, select a type, set your budget, and upload reference files.'),
+      icon: Sparkles,
+      color: 'from-blue-600 to-indigo-600',
+      glow: 'shadow-blue-500/25'
+    },
+    {
+      num: '02',
+      title: t('process_step2_title', 'Expert Review'),
+      desc: t('process_step2_desc', 'Our tech lead reviews your request, may ask clarifying questions, and prepares a detailed proposal.'),
+      icon: ShieldCheck,
+      color: 'from-indigo-600 to-purple-600',
+      glow: 'shadow-indigo-500/25'
+    },
+    {
+      num: '03',
+      title: t('process_step3_title', 'Accept Quotation'),
+      desc: t('process_step3_desc', 'Review the itemized proposal, accept it, and a formal contract auto-generates instantly.'),
+      icon: CheckCircle2,
+      color: 'from-purple-600 to-pink-600',
+      glow: 'shadow-purple-500/25'
+    },
+    {
+      num: '04',
+      title: t('process_step4_title', 'Track & Deliver'),
+      desc: t('process_step4_desc', 'Monitor milestones, chat directly with admin, approve deliverables, and manage payments.'),
+      icon: TrendingUp,
+      color: 'from-emerald-600 to-cyan-600',
+      glow: 'shadow-emerald-500/25'
+    }
+  ];
+
+  const trustedLogos = ['React', 'Next.js', 'Node.js', 'AWS', 'Docker', 'PostgreSQL', 'MongoDB', 'Python'];
 
   // Section refs
   const [heroRef, heroInView] = useInView(0.1);
@@ -165,32 +167,31 @@ export function Home() {
           {/* Eyebrow */}
           <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-wider mb-8 ${heroInView ? 'animate-fade-up' : 'opacity-0'}`}>
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Managed Tech Service Platform</span>
+            <span>{t('hero_badge', 'Managed Tech Service Platform')}</span>
           </div>
 
           {/* Headline */}
           <h1 className={`text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] mb-6 ${heroInView ? 'animate-fade-up delay-100' : 'opacity-0'}`}>
-            <span className="text-slate-900 dark:text-white block">Build. Support.</span>
-            <span className="shimmer-text block">Maintain.</span>
+            <span className="text-slate-900 dark:text-white block">{t('hero_title_1', 'Build. Support.')}</span>
+            <span className="shimmer-text block">{t('hero_title_2', 'Maintain.')}</span>
           </h1>
 
           {/* Subtext */}
           <p className={`text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed mb-10 ${heroInView ? 'animate-fade-up delay-200' : 'opacity-0'}`}>
-            WorkForge connects you with a dedicated engineering team to build, support, and scale your software.
-            Post a project, receive a transparent quotation, and track every milestone — all in one place.
+            {t('hero_desc', 'Uzhaipu connects you with a dedicated engineering team to build, support, and scale your software. Post a project, receive a transparent quotation, and track every milestone — all in one place.')}
           </p>
 
           {/* CTA Buttons */}
           <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 ${heroInView ? 'animate-fade-up delay-300' : 'opacity-0'}`}>
             <Link to="/projects/create">
               <button className="btn-neon group flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-sm shadow-xl shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-105 transition-all duration-300 w-full sm:w-auto justify-center cursor-pointer">
-                Post a Project — It's Free
+                {t('hero_cta_post', "Post a Project — It's Free")}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </Link>
             <Link to="/services">
               <button className="group flex items-center gap-2 px-7 py-3.5 rounded-2xl border-2 border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-bold text-sm hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105 transition-all duration-300 w-full sm:w-auto justify-center cursor-pointer bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm">
-                <Play className="w-4 h-4" /> Explore Services
+                <Play className="w-4 h-4" /> {t('hero_cta_explore', 'Explore Services')}
               </button>
             </Link>
           </div>
@@ -204,7 +205,7 @@ export function Home() {
                 </div>
               ))}
             </div>
-            <span><strong className="text-slate-700 dark:text-slate-200">500+ clients</strong> already building with WorkForge</span>
+            <span><strong className="text-slate-700 dark:text-slate-200">500+ clients</strong> {t('hero_social_proof', 'already building with Uzhaipu')}</span>
           </div>
         </div>
       </section>
@@ -212,24 +213,24 @@ export function Home() {
       {/* ═══════════════════════════════════════
           STATS SECTION
       ═══════════════════════════════════════ */}
-      <section ref={statsRef} className="py-12 bg-slate-900 dark:bg-slate-950">
+      <section ref={statsRef} className="py-12 bg-slate-100/80 dark:bg-slate-950 border-y border-slate-200/80 dark:border-slate-800/80 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { value: 500, suffix: '+', label: 'Projects Delivered', color: 'text-blue-400', icon: '🚀' },
-              { value: 98, suffix: '%', label: 'Client Satisfaction', color: 'text-emerald-400', icon: '⭐' },
-              { value: 50, suffix: '+', label: 'Tech Specialists', color: 'text-purple-400', icon: '👨‍💻' },
-              { value: 5, suffix: ' Yrs', label: 'Of Excellence', color: 'text-amber-400', icon: '🏆' }
+              { value: 500, suffix: '+', label: t('stat_delivered', 'Projects Delivered'), color: 'text-blue-600 dark:text-blue-400', icon: '🚀' },
+              { value: 98, suffix: '%', label: t('stat_satisfaction', 'Client Satisfaction'), color: 'text-emerald-600 dark:text-emerald-400', icon: '⭐' },
+              { value: 50, suffix: '+', label: t('stat_specialists', 'Tech Specialists'), color: 'text-purple-600 dark:text-purple-400', icon: '👨‍💻' },
+              { value: 5, suffix: ' Yrs', label: t('stat_excellence', 'Of Excellence'), color: 'text-amber-600 dark:text-amber-400', icon: '🏆' }
             ].map((stat, i) => (
               <div
                 key={i}
-                className={`stat-shine p-6 rounded-2xl bg-slate-800/60 border border-slate-700/50 text-center hover-lift gradient-border ${statsInView ? `animate-scale-pop delay-${(i + 1) * 100}` : 'opacity-0'}`}
+                className={`stat-shine p-6 rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200/90 dark:border-slate-800 text-center hover-lift gradient-border shadow-xs ${statsInView ? `animate-scale-pop delay-${(i + 1) * 100}` : 'opacity-0'}`}
               >
                 <div className="text-2xl mb-1">{stat.icon}</div>
                 <div className={`text-3xl sm:text-4xl font-black ${stat.color}`}>
                   <AnimatedCounter target={stat.value} suffix={stat.suffix} />
                 </div>
-                <p className="text-xs text-slate-400 uppercase tracking-wider font-bold mt-2">{stat.label}</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold mt-2">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -239,7 +240,7 @@ export function Home() {
       {/* ═══════════════════════════════════════
           TECH LOGOS STRIP
       ═══════════════════════════════════════ */}
-      <div className="py-8 border-y border-slate-100 dark:border-slate-800 overflow-hidden bg-white dark:bg-slate-900">
+      <div className="py-8 border-b border-slate-200/80 dark:border-slate-800 overflow-hidden bg-white dark:bg-slate-900/60">
         <p className="text-center text-[11px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-5">
           Technologies We Master
         </p>
@@ -260,13 +261,13 @@ export function Home() {
       <section ref={servicesRef} className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <p className={`text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-3 ${servicesInView ? 'animate-fade-up' : 'opacity-0'}`}>
-            What We Do
+            {t('services_eyebrow', 'What We Do')}
           </p>
           <h2 className={`text-3xl sm:text-4xl font-black text-slate-900 dark:text-white ${servicesInView ? 'animate-fade-up delay-100' : 'opacity-0'}`}>
-            Every Service Your Project Needs
+            {t('services_title', 'Every Service Your Project Needs')}
           </h2>
           <p className={`mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-400 ${servicesInView ? 'animate-fade-up delay-200' : 'opacity-0'}`}>
-            From greenfield builds to ongoing maintenance — WorkForge covers the full software lifecycle with one dedicated team.
+            {t('services_desc', 'From greenfield builds to ongoing maintenance — Uzhaipu covers the full software lifecycle with one dedicated team.')}
           </p>
         </div>
 
@@ -277,7 +278,7 @@ export function Home() {
             return (
               <div
                 key={type.id}
-                className={`hover-lift gradient-border group relative p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col justify-between cursor-pointer ${servicesInView ? `animate-fade-up ${delay}` : 'opacity-0'}`}
+                className={`hover-lift gradient-border group relative p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col justify-between cursor-pointer shadow-xs ${servicesInView ? `animate-fade-up ${delay}` : 'opacity-0'}`}
               >
                 {/* Icon */}
                 <div>
@@ -304,7 +305,7 @@ export function Home() {
                     to={`/projects/create?type=${type.id}`}
                     className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 dark:text-blue-400 hover:gap-2.5 transition-all"
                   >
-                    Get Started <ChevronRight className="w-3 h-3" />
+                    {t('services_get_started', 'Get Started')} <ChevronRight className="w-3 h-3" />
                   </Link>
                 </div>
               </div>
@@ -319,25 +320,24 @@ export function Home() {
       <section
         id="how-it-works"
         ref={stepsRef}
-        className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950 text-white"
+        className="py-24 relative overflow-hidden bg-slate-100/70 dark:bg-slate-950/80 border-y border-slate-200/80 dark:border-slate-800"
       >
         {/* Background decoration */}
         <div className="absolute inset-0 overflow-hidden -z-0">
-          <div className="animate-blob absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
-          <div className="animate-blob delay-400 absolute bottom-0 left-0 w-80 h-80 bg-purple-600/10 rounded-full blur-3xl" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.07)_0%,_transparent_70%)]" />
+          <div className="animate-blob absolute top-0 right-0 w-96 h-96 bg-blue-400/10 dark:bg-blue-600/10 rounded-full blur-3xl" />
+          <div className="animate-blob delay-400 absolute bottom-0 left-0 w-80 h-80 bg-purple-400/10 dark:bg-purple-600/10 rounded-full blur-3xl" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className={`text-xs font-bold uppercase tracking-wider text-blue-400 mb-3 ${stepsInView ? 'animate-fade-up' : 'opacity-0'}`}>
-              Process
+            <p className={`text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-3 ${stepsInView ? 'animate-fade-up' : 'opacity-0'}`}>
+              {t('process_eyebrow', 'Process')}
             </p>
-            <h2 className={`text-3xl sm:text-4xl font-black text-white ${stepsInView ? 'animate-fade-up delay-100' : 'opacity-0'}`}>
-              How WorkForge Works
+            <h2 className={`text-3xl sm:text-4xl font-black text-slate-900 dark:text-white ${stepsInView ? 'animate-fade-up delay-100' : 'opacity-0'}`}>
+              {t('process_title', 'How Uzhaipu Works')}
             </h2>
-            <p className={`mt-3 text-sm text-slate-300 ${stepsInView ? 'animate-fade-up delay-200' : 'opacity-0'}`}>
-              Transparent, structured, and predictable — from first request to final delivery.
+            <p className={`mt-3 text-sm text-slate-600 dark:text-slate-300 ${stepsInView ? 'animate-fade-up delay-200' : 'opacity-0'}`}>
+              {t('process_desc', 'Transparent, structured, and predictable — from first request to final delivery.')}
             </p>
           </div>
 
@@ -349,22 +349,22 @@ export function Home() {
               return (
                 <div
                   key={step.num}
-                  className={`relative group hover-lift p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 ${stepsInView ? `animate-wave-in ${delay}` : 'opacity-0'}`}
+                  className={`relative group hover-lift p-6 rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-blue-500/40 dark:hover:border-blue-500/40 shadow-xs hover:shadow-md transition-all duration-300 ${stepsInView ? `animate-wave-in ${delay}` : 'opacity-0'}`}
                 >
                   {/* Connector line (hidden on mobile) */}
                   {i < steps.length - 1 && (
-                    <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-px bg-gradient-to-r from-white/20 to-transparent" />
+                    <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-px bg-slate-300 dark:bg-slate-700" />
                   )}
 
                   <div className={`w-12 h-12 rounded-2xl bg-gradient-to-tr ${step.color} flex items-center justify-center shadow-xl ${step.glow} mb-4 group-hover:scale-110 transition-transform duration-300`}>
                     <Icon className="w-5 h-5 text-white" />
                   </div>
 
-                  <span className={`text-4xl font-black font-mono text-white/10 step-glow block -mt-1 mb-2`}>
+                  <span className="text-4xl font-black font-mono text-slate-300 dark:text-slate-700 block -mt-1 mb-2">
                     {step.num}
                   </span>
-                  <h3 className="text-sm font-bold text-white mb-2">{step.title}</h3>
-                  <p className="text-xs text-slate-300 leading-relaxed">{step.desc}</p>
+                  <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-2">{step.title}</h3>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{step.desc}</p>
                 </div>
               );
             })}
@@ -372,8 +372,8 @@ export function Home() {
 
           <div className={`text-center ${stepsInView ? 'animate-fade-up delay-600' : 'opacity-0'}`}>
             <Link to="/projects/create">
-              <button className="btn-neon inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold text-sm shadow-2xl shadow-blue-500/30 hover:scale-105 transition-all duration-300 cursor-pointer">
-                Start My Project Now <ArrowRight className="w-4 h-4" />
+              <button className="btn-neon inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-sm shadow-xl shadow-blue-500/30 hover:scale-105 transition-all duration-300 cursor-pointer">
+                {t('process_start_btn', 'Start Your Project Now')} <ArrowRight className="w-4 h-4" />
               </button>
             </Link>
           </div>
@@ -413,17 +413,17 @@ export function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <p className={`text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-3 ${reviewsInView ? 'animate-fade-up' : 'opacity-0'}`}>
-              Client Voices
+              {t('testimonials_eyebrow', 'Client Voices')}
             </p>
             <h2 className={`text-3xl sm:text-4xl font-black text-slate-900 dark:text-white ${reviewsInView ? 'animate-fade-up delay-100' : 'opacity-0'}`}>
-              Trusted by Teams Worldwide
+              {t('testimonials_title', 'Trusted by Teams Worldwide')}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {(reviews.length > 0 ? reviews : [
-              { id: 1, rating: 5, comment: 'WorkForge rebuilt our entire e-commerce platform in 8 weeks. The milestone tracking and transparent quotation process made everything stress-free.', reviewer_name: 'Sarah Chen', company_name: 'CTO, FinTech Pulse · Singapore' },
-              { id: 2, rating: 5, comment: 'We had a critical production bug killing revenue. WorkForge diagnosed and fixed it within 6 hours. Exceptional emergency support.', reviewer_name: 'James Whitfield', company_name: 'Founder, CloudNext · United Kingdom' },
+              { id: 1, rating: 5, comment: 'Uzhaipu rebuilt our entire e-commerce platform in 8 weeks. The milestone tracking and transparent quotation process made everything stress-free.', reviewer_name: 'Sarah Chen', company_name: 'CTO, FinTech Pulse · Singapore' },
+              { id: 2, rating: 5, comment: 'We had a critical production bug killing revenue. Uzhaipu diagnosed and fixed it within 6 hours. Exceptional emergency support.', reviewer_name: 'James Whitfield', company_name: 'Founder, CloudNext · United Kingdom' },
               { id: 3, rating: 5, comment: 'The quotation builder is incredibly detailed. Every line item was crystal clear before we signed. Professional through and through.', reviewer_name: 'Priya Sharma', company_name: 'Head of Product, Veloce · India' }
             ]).map((rev, i) => {
               const delay = `delay-${(i + 1) * 100}`;
@@ -475,10 +475,10 @@ export function Home() {
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="max-w-xl text-center lg:text-left">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight">
-                Your project deserves expert execution.
+                {t('cta_title', 'Your project deserves expert execution.')}
               </h2>
               <p className="mt-3 text-sm sm:text-base text-blue-100 leading-relaxed">
-                Post your project today and let WorkForge's team handle everything — from initial quote to final delivery — with full transparency at every step.
+                {t('cta_desc', "Post your project today and let Uzhaipu's team handle everything — from initial quote to final delivery — with full transparency at every step.")}
               </p>
 
               <div className="mt-5 flex flex-wrap gap-3 justify-center lg:justify-start text-xs text-blue-200">
@@ -491,12 +491,12 @@ export function Home() {
             <div className="flex flex-col sm:flex-row lg:flex-col gap-3 w-full sm:w-auto shrink-0">
               <Link to="/projects/create" className="w-full sm:w-auto">
                 <button className="btn-neon w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl bg-white text-blue-700 font-bold text-sm hover:bg-blue-50 hover:scale-105 shadow-lg transition-all duration-300 cursor-pointer">
-                  Post a Project — Free <ArrowRight className="w-4 h-4" />
+                  {t('cta_btn_free', 'Post a Project — Free')} <ArrowRight className="w-4 h-4" />
                 </button>
               </Link>
               <Link to="/about" className="w-full sm:w-auto">
                 <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl border-2 border-white/30 text-white font-bold text-sm hover:bg-white/10 hover:scale-105 transition-all duration-300 cursor-pointer">
-                  Learn More About Us
+                  {t('cta_btn_about', 'Learn More About Us')}
                 </button>
               </Link>
             </div>

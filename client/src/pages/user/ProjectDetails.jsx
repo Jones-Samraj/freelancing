@@ -331,7 +331,7 @@ export function ProjectDetails() {
             <div>
               <h3 className="text-base font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
                 <MessageSquare className="w-5 h-5 text-blue-600" />
-                WorkForge Direct Tech Lead Chat
+                Uzhaipu Direct Tech Lead Chat
               </h3>
               <p className="text-xs text-slate-500">Communicate directly with technical administration regarding this project.</p>
             </div>
@@ -354,7 +354,7 @@ export function ProjectDetails() {
                   >
                     <div className="flex items-center gap-1.5 mb-1 text-[11px] text-slate-400">
                       <span className="font-bold text-slate-700 dark:text-slate-300">
-                        {isMe ? 'You' : 'WorkForge Admin'}
+                        {isMe ? 'You' : 'Uzhaipu Admin'}
                       </span>
                       <span>·</span>
                       <span>{new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
@@ -515,7 +515,7 @@ export function ProjectDetails() {
                 required
                 value={reviewComment}
                 onChange={(e) => setReviewComment(e.target.value)}
-                placeholder="Share how WorkForge handled your project delivery, code quality, and communication..."
+                placeholder="Share how Uzhaipu handled your project delivery, code quality, and communication..."
               />
               <Button size="md" variant="primary" onClick={handleSubmitReview} isLoading={actionLoading}>
                 Submit Official Review

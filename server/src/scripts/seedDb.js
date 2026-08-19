@@ -43,22 +43,22 @@ async function seed() {
     // 3. Seed Admin User
     await connection.query(`
       INSERT INTO users (id, name, email, password, role, country_id, phone, email_verified, status)
-      VALUES (1, 'WorkForge Admin', 'admin@workforge.dev', ?, 'admin', 1, '+1 (555) 019-2834', TRUE, 'active')
-      ON DUPLICATE KEY UPDATE name=VALUES(name), password=VALUES(password), role='admin', email_verified=TRUE, status='active';
+      VALUES (1, 'Uzhaipu Admin', 'admin@uzhaipu.dev', ?, 'admin', 1, '+1 (555) 019-2834', TRUE, 'active')
+      ON DUPLICATE KEY UPDATE name=VALUES(name), email=VALUES(email), password=VALUES(password), role='admin', email_verified=TRUE, status='active';
     `, [adminPasswordHash]);
 
     // Admin Profile
     await connection.query(`
       INSERT INTO user_profiles (user_id, display_name, bio, company_name, company_website, phone, city, state, timezone, profile_completion)
-      VALUES (1, 'Lead Service Operations', 'Official WorkForge Technical Management and Delivery Lead.', 'WorkForge Global Inc.', 'https://workforge.dev', '+1 (555) 019-2834', 'San Francisco', 'California', 'America/Los_Angeles', 100)
+      VALUES (1, 'Lead Service Operations', 'Official Uzhaipu Technical Management and Delivery Lead.', 'Uzhaipu Global Inc.', 'https://uzhaipu.dev', '+1 (555) 019-2834', 'San Francisco', 'California', 'America/Los_Angeles', 100)
       ON DUPLICATE KEY UPDATE display_name=VALUES(display_name), bio=VALUES(bio);
     `);
 
     // 4. Seed Demo Client User
     await connection.query(`
       INSERT INTO users (id, name, email, password, role, country_id, phone, email_verified, status)
-      VALUES (2, 'Jones Samraj', 'user@workforge.dev', ?, 'user', 2, '+91 98765 43210', TRUE, 'active')
-      ON DUPLICATE KEY UPDATE name=VALUES(name), password=VALUES(password), role='user', email_verified=TRUE, status='active';
+      VALUES (2, 'Jones Samraj', 'user@uzhaipu.dev', ?, 'user', 2, '+91 98765 43210', TRUE, 'active')
+      ON DUPLICATE KEY UPDATE name=VALUES(name), email=VALUES(email), password=VALUES(password), role='user', email_verified=TRUE, status='active';
     `, [userPasswordHash]);
 
     // User Profile

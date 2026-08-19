@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { Navbar } from '../components/navbar/Navbar';
-import { Layers, Mail, MapPin, Clock } from 'lucide-react';
+import { Mail, MapPin, Clock } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, TwitterIcon } from '../components/common';
 import { siteConfig } from '../config/siteConfig';
 
@@ -21,12 +21,13 @@ export function PublicLayout() {
             {/* Brand column */}
             <div className="space-y-4 md:col-span-1">
               <Link to="/" className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white">
-                  <Layers className="w-4 h-4" />
+                <div className="w-8 h-8 rounded-xl overflow-hidden bg-white border border-slate-100 dark:border-slate-700 shadow-sm flex items-center justify-center shrink-0">
+                  <img src="/logo.png" alt="Uzhaipu" className="w-7 h-7 object-contain" />
                 </div>
-                <span className="text-lg font-black tracking-tight text-slate-900 dark:text-white">
-                  Work<span className="text-blue-600 dark:text-blue-400">Forge</span>
-                </span>
+                <div className="leading-none">
+                  <span className="text-sm font-black text-slate-900 dark:text-white block">உழைப்பு</span>
+                  <span className="text-xs font-bold text-blue-600 dark:text-blue-400">Uzhaipu</span>
+                </div>
               </Link>
               <p className="text-xs leading-relaxed">
                 A managed tech service platform connecting clients with a dedicated expert team. Build, support, and maintain software — professionally.
@@ -48,7 +49,7 @@ export function PublicLayout() {
             <div>
               <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100 mb-3">Platform</h4>
               <ul className="space-y-2 text-xs">
-                <li><Link to="/#how-it-works" className="hover:text-blue-600 dark:hover:text-blue-400">How It Works</Link></li>
+                <li><Link to="/how-it-works" className="hover:text-blue-600 dark:hover:text-blue-400">How It Works</Link></li>
                 <li><Link to="/projects/create" className="hover:text-blue-600 dark:hover:text-blue-400">Post a Project</Link></li>
                 <li><Link to="/projects" className="hover:text-blue-600 dark:hover:text-blue-400">Track Progress</Link></li>
                 <li><Link to="/services" className="hover:text-blue-600 dark:hover:text-blue-400">Pricing</Link></li>
@@ -89,7 +90,7 @@ export function PublicLayout() {
           </div>
 
           <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
-            <p>© {new Date().getFullYear()} WorkForge. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Uzhaipu. All rights reserved.</p>
             <p className="mt-2 sm:mt-0 font-medium">Build. Support. Maintain.</p>
           </div>
         </div>

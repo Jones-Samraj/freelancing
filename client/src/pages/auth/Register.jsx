@@ -85,15 +85,18 @@ export function Register() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-2xl -z-0 pointer-events-none" />
 
           <div className="relative z-10">
-            <Link to="/" className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
-                <Layers className="w-5 h-5" />
+            <Link to="/" className="flex items-center gap-2">
+              <div className="w-9 h-9 rounded-xl bg-white/95 overflow-hidden flex items-center justify-center shadow-md shadow-black/20">
+                <img src="/logo.png" alt="Uzhaipu" className="w-8 h-8 object-contain" />
               </div>
-              <span className="text-xl font-black tracking-tight">WorkForge</span>
+              <div className="leading-none">
+                <span className="text-sm font-black text-white block">உழைப்பு</span>
+                <span className="text-xs font-bold text-blue-200">Uzhaipu</span>
+              </div>
             </Link>
 
             <h2 className="mt-8 text-2xl sm:text-3xl font-black leading-tight">
-              Start Your Project with WorkForge.
+              Start Your Project with Uzhaipu.
             </h2>
             <p className="mt-3 text-xs text-blue-100 leading-relaxed">
               Create a free Client account to post requirements, get detailed quotations, track development milestones, and collaborate seamlessly with our technical execution leads.
@@ -121,7 +124,7 @@ export function Register() {
           <div className="mb-6">
             <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Create Client Account</h3>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              Join WorkForge to post projects and receive quotes
+              Join Uzhaipu to post projects and receive quotes
             </p>
           </div>
 

@@ -24,7 +24,7 @@ export function QuotationView({ quotation, onAccept, onReject, isClient = true, 
         {/* Decorative Top Banner */}
         <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600" />
 
-        {/* Header with WorkForge Branding & Quote Info */}
+        {/* Header with Uzhaipu Branding & Quote Info */}
         <div className="flex flex-col sm:flex-row justify-between items-start gap-4 pb-8 border-b border-slate-200 dark:border-slate-800">
           <div>
             <div className="flex items-center gap-2.5">
@@ -130,7 +130,7 @@ export function QuotationView({ quotation, onAccept, onReject, isClient = true, 
         <div className="py-6 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row justify-between items-start gap-6">
           <div className="max-w-xs text-xs text-slate-500 space-y-1">
             <h5 className="font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-500" /> WorkForge Guarantee
+              <ShieldCheck className="w-4 h-4 text-emerald-500" /> Uzhaipu Guarantee
             </h5>
             <p className="text-[11px] leading-relaxed">
               Work starts only upon milestone approval. Payments are protected in platform escrow and disbursed upon deliverable review.

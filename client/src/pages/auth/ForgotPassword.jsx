@@ -86,7 +86,7 @@ export function VerifyEmail() {
         </div>
         <h2 className="text-2xl font-bold">Email Verified</h2>
         <p className="text-xs text-slate-500">
-          Your email address has been verified. Welcome to the WorkForge platform!
+          Your email address has been verified. Welcome to the Uzhaipu platform!
         </p>
         <Link to="/dashboard">
           <Button size="md" className="w-full mt-4">Go to Dashboard</Button>

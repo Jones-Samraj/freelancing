@@ -35,7 +35,7 @@ export function Quotations() {
           Proposals & Quotations
         </h1>
         <p className="text-xs text-slate-500 mt-1">
-          Review official technical proposals and scope breakdown created by WorkForge technical management.
+          Review official technical proposals and scope breakdown created by Uzhaipu technical management.
         </p>
       </div>
 

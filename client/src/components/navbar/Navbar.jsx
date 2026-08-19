@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Layers, Menu, X, Shield, PlusCircle, LogOut, User, FolderKanban, ChevronDown } from 'lucide-react';
+import { Menu, X, Shield, PlusCircle, LogOut, User, FolderKanban, ChevronDown } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { ThemeToggle } from './ThemeToggle';
+import { LanguageToggle } from './LanguageToggle';
 import { NotificationDropdown } from './NotificationDropdown';
-import { siteConfig } from '../../config/siteConfig';
 
 export function Navbar() {
   const { user, isAuthenticated, isAdmin, logout } = useAuth();
+  const { t } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -33,10 +35,11 @@ export function Navbar() {
   };
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' }
+    { name: t('nav_home', 'Home'), path: '/' },
+    { name: t('nav_services', 'Services'), path: '/services' },
+    { name: t('nav_how_it_works', 'How It Works'), path: '/how-it-works' },
+    { name: t('nav_about', 'About'), path: '/about' },
+    { name: t('nav_contact', 'Contact'), path: '/contact' }
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -51,12 +54,12 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
 
           {/* ── Brand Logo ── */}
-          <Link to="/" className="flex items-center gap-2 group shrink-0">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/25 group-hover:scale-110 transition-transform duration-200">
-              <Layers className="w-5 h-5" />
+          <Link to="/" className="flex items-center gap-2.5 group shrink-0">
+            <div className="w-9 h-9 rounded-xl overflow-hidden bg-white border border-slate-100 dark:border-slate-700 shadow-md shadow-blue-500/25 group-hover:scale-110 transition-transform duration-200 flex items-center justify-center">
+              <img src="/logo.png" alt="Uzhaipu Logo" className="w-8 h-8 object-contain" />
             </div>
             <span className="text-xl font-black tracking-tight text-slate-900 dark:text-white hidden xs:block sm:block">
-              Work<span className="text-blue-600 dark:text-blue-400">Forge</span>
+              Uzhaipu
             </span>
           </Link>
 
@@ -64,7 +67,7 @@ export function Navbar() {
           <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
-                key={link.name}
+                key={link.path}
                 to={link.path}
                 className={`px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
                   isActive(link.path)
@@ -79,6 +82,10 @@ export function Navbar() {
 
           {/* ── Right Controls ── */}
           <div className="flex items-center gap-2">
+            {/* Language Selector */}
+            <LanguageToggle />
+
+            {/* Dark/Light Mode Theme Toggle */}
             <ThemeToggle />
 
             {isAuthenticated ? (
@@ -125,22 +132,22 @@ export function Navbar() {
                           {isAdmin ? (
                             <>
                               <Link to="/admin/dashboard" onClick={() => setDropdownOpen(false)} className="flex items-center gap-2.5 px-4 py-2.5 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                                <Shield className="w-4 h-4 text-purple-500" /> Admin Dashboard
+                                <Shield className="w-4 h-4 text-purple-500" /> {t('nav_admin_dashboard', 'Admin Dashboard')}
                               </Link>
                               <Link to="/admin/projects" onClick={() => setDropdownOpen(false)} className="flex items-center gap-2.5 px-4 py-2.5 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                                <FolderKanban className="w-4 h-4 text-blue-500" /> All Projects
+                                <FolderKanban className="w-4 h-4 text-blue-500" /> {t('nav_all_projects', 'All Projects')}
                               </Link>
                             </>
                           ) : (
                             <>
                               <Link to="/dashboard" onClick={() => setDropdownOpen(false)} className="flex items-center gap-2.5 px-4 py-2.5 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                                <FolderKanban className="w-4 h-4 text-blue-500" /> Client Dashboard
+                                <FolderKanban className="w-4 h-4 text-blue-500" /> {t('nav_dashboard', 'Client Dashboard')}
                               </Link>
                               <Link to="/projects/create" onClick={() => setDropdownOpen(false)} className="flex items-center gap-2.5 px-4 py-2.5 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                                <PlusCircle className="w-4 h-4 text-emerald-500" /> Post New Project
+                                <PlusCircle className="w-4 h-4 text-emerald-500" /> {t('nav_post_project', 'Post New Project')}
                               </Link>
                               <Link to="/profile" onClick={() => setDropdownOpen(false)} className="flex items-center gap-2.5 px-4 py-2.5 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                                <User className="w-4 h-4 text-slate-400" /> Profile & Settings
+                                <User className="w-4 h-4 text-slate-400" /> {t('nav_profile', 'Profile & Settings')}
                               </Link>
                             </>
                           )}
@@ -151,7 +158,7 @@ export function Navbar() {
                           onClick={handleLogout}
                           className="w-full text-left flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors cursor-pointer"
                         >
-                          <LogOut className="w-4 h-4" /> Sign Out
+                          <LogOut className="w-4 h-4" /> {t('nav_sign_out', 'Sign Out')}
                         </button>
                       </div>
                     </>
@@ -164,13 +171,13 @@ export function Navbar() {
                   to="/login"
                   className="px-4 py-2 text-xs font-semibold rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                 >
-                  Sign In
+                  {t('nav_sign_in', 'Sign In')}
                 </Link>
                 <Link
                   to="/register"
                   className="px-4 py-2 text-xs font-bold rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 shadow-md shadow-blue-500/20 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
                 >
-                  Get Started
+                  {t('nav_get_started', 'Get Started')}
                 </Link>
               </div>
             )}
@@ -194,12 +201,12 @@ export function Navbar() {
           <div className="px-4 py-4 space-y-1">
             {navLinks.map((link) => (
               <Link
-                key={link.name}
+                key={link.path}
                 to={link.path}
                 onClick={() => setMobileOpen(false)}
                 className={`flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
                   isActive(link.path)
-                    ? 'bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400'
+                    ? 'bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 font-semibold'
                     : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
@@ -215,14 +222,14 @@ export function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="w-full text-center py-3 text-sm font-semibold rounded-xl border-2 border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:border-blue-500 transition-colors"
               >
-                Sign In
+                {t('nav_sign_in', 'Sign In')}
               </Link>
               <Link
                 to="/register"
                 onClick={() => setMobileOpen(false)}
                 className="w-full text-center py-3 text-sm font-bold rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md hover:opacity-95 transition-opacity"
               >
-                Get Started — Free
+                {t('nav_get_started', 'Get Started — Free')}
               </Link>
             </div>
           )}
@@ -232,21 +239,21 @@ export function Navbar() {
               {isAdmin ? (
                 <>
                   <Link to="/admin/dashboard" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
-                    <Shield className="w-4 h-4 text-purple-500" /> Admin Dashboard
+                    <Shield className="w-4 h-4 text-purple-500" /> {t('nav_admin_dashboard', 'Admin Dashboard')}
                   </Link>
                 </>
               ) : (
                 <>
                   <Link to="/dashboard" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
-                    <FolderKanban className="w-4 h-4 text-blue-500" /> Dashboard
+                    <FolderKanban className="w-4 h-4 text-blue-500" /> {t('nav_dashboard', 'Dashboard')}
                   </Link>
                   <Link to="/projects/create" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
-                    <PlusCircle className="w-4 h-4 text-emerald-500" /> Post a Project
+                    <PlusCircle className="w-4 h-4 text-emerald-500" /> {t('nav_post_project', 'Post a Project')}
                   </Link>
                 </>
               )}
               <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30 cursor-pointer">
-                <LogOut className="w-4 h-4" /> Sign Out
+                <LogOut className="w-4 h-4" /> {t('nav_sign_out', 'Sign Out')}
               </button>
             </div>
           )}

@@ -10,6 +10,7 @@ import { AdminLayout } from '../layouts/AdminLayout';
 import { Home } from '../pages/public/Home';
 import { About } from '../pages/public/About';
 import { Services } from '../pages/public/Services';
+import { HowItWorks } from '../pages/public/HowItWorks';
 import { Contact } from '../pages/public/Contact';
 
 // Auth Pages
@@ -59,6 +60,7 @@ export function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/contact" element={<Contact />} />
         
         {/* Auth Routes inside public layout */}

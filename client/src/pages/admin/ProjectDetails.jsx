@@ -359,7 +359,7 @@ export function AdminProjectDetails() {
                   >
                     <div className="flex items-center gap-1.5 mb-1 text-[11px] text-slate-400">
                       <span className="font-bold text-slate-700 dark:text-slate-300">
-                        {isMe ? 'WorkForge Admin' : project.client_name}
+                        {isMe ? 'Uzhaipu Admin' : project.client_name}
                       </span>
                       <span>·</span>
                       <span>{new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>

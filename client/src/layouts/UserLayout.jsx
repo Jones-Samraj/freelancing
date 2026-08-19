@@ -12,7 +12,7 @@ export function UserLayout() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950">
-        <Loader size="lg" text="Authenticating WorkForge session..." />
+        <Loader size="lg" text="Authenticating Uzhaipu session..." />
       </div>
     );
   }

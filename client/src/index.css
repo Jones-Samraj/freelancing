@@ -232,32 +232,25 @@
   animation: shimmer 4s linear infinite;
 }
 
-/* Gradient border card */
+/* Gradient border card - uses box-shadow ring so content is never obscured */
 .gradient-border {
   position: relative;
+  isolation: isolate;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, #2563eb, #7c3aed, #06b6d4);
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.gradient-border:hover::before {
-  opacity: 1;
+.gradient-border:hover {
+  box-shadow: 0 0 0 2px #2563eb, 0 16px 40px -10px rgba(37, 99, 235, 0.2);
 }
 
 /* Hover lift card */
 .hover-lift {
+  isolation: isolate;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .hover-lift:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px -12px rgba(37, 99, 235, 0.18);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px -10px rgba(37, 99, 235, 0.16);
 }
 
 /* Stat counter card */

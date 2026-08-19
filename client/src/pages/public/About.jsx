@@ -9,12 +9,12 @@ export function About() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16 animate-fade-in">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto">
-        <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">About WorkForge</span>
+        <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">About Uzhaipu</span>
         <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white mt-2">
           A Managed Approach to Tech Delivery
         </h1>
         <p className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-          Traditional freelancing platforms force clients to sift through hundreds of unverified bids, deal with inconsistent code quality, and navigate complex escrow disputes. WorkForge changes the equation.
+          Traditional freelancing platforms force clients to sift through hundreds of unverified bids, deal with inconsistent code quality, and navigate complex escrow disputes. Uzhaipu changes the equation.
         </p>
       </div>
 
@@ -46,7 +46,7 @@ export function About() {
 
         <Card className="p-8 border-blue-200 dark:border-blue-900/60 bg-blue-50/40 dark:bg-blue-950/20 shadow-md">
           <h3 className="text-lg font-bold text-blue-700 dark:text-blue-400 mb-4 flex items-center gap-2">
-            <ShieldCheck className="w-5 h-5" /> The WorkForge Standard
+            <ShieldCheck className="w-5 h-5" /> The Uzhaipu Standard
           </h3>
           <ul className="space-y-3 text-xs text-slate-700 dark:text-slate-200 leading-relaxed">
             <li className="flex items-start gap-2">

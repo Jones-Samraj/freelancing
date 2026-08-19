@@ -27,7 +27,7 @@ export function Messages() {
           Technical Direct Messages
         </h1>
         <p className="text-xs text-slate-500 mt-1">
-          Select a project workspace to exchange direct messages and attachments with WorkForge Admin.
+          Select a project workspace to exchange direct messages and attachments with Uzhaipu Admin.
         </p>
       </div>
 

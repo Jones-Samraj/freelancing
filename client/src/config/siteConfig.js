@@ -1,19 +1,20 @@
 export const siteConfig = {
-  name: "WorkForge",
+  name: "Uzhaipu",
   tagline: "Build. Support. Maintain.",
   heroHeading: "Your project. Our expertise.",
   description: "Enterprise-grade managed tech services and project execution platform. Submit your requirements, receive transparent itemized proposals, and track milestone-based delivery with a dedicated team.",
+  logoPath: "/logo.png",
   apiBaseUrl: "http://localhost:5000/api",
   storageBaseUrl: "http://localhost:5000/uploads",
   contact: {
-    email: "contact@workforge.dev",
-    supportEmail: "support@workforge.dev",
+    email: "contact@uzhaipu.dev",
+    supportEmail: "support@uzhaipu.dev",
     phone: "+1 (800) 555-WORK",
     address: "100 Tech Hub Blvd, Suite 400, San Francisco, CA 94107",
     hours: "Mon - Fri, 9:00 AM - 6:00 PM UTC",
-    linkedin: "https://linkedin.com/company/workforge-platform",
-    github: "https://github.com/workforge-platform",
-    twitter: "https://twitter.com/workforge_dev"
+    linkedin: "https://linkedin.com/company/uzhaipu",
+    github: "https://github.com/uzhaipu",
+    twitter: "https://twitter.com/uzhaipu_dev"
   },
   projectTypes: [
     {

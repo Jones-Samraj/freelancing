@@ -26,7 +26,7 @@ export function Reviews() {
           Client Reviews & Ratings
         </h1>
         <p className="text-xs text-slate-500 mt-1">
-          Explore client ratings and verified reviews on completed WorkForge engineering projects.
+          Explore client ratings and verified reviews on completed Uzhaipu engineering projects.
         </p>
       </div>
 

@@ -79,7 +79,7 @@ export function Dashboard() {
             Good day, {firstName} 👋
           </h1>
           <p className="text-xs sm:text-sm text-blue-100 mt-1 max-w-xl">
-            Track your ongoing builds, review official quotations, and manage milestone delivery directly with WorkForge technical leadership.
+            Track your ongoing builds, review official quotations, and manage milestone delivery directly with Uzhaipu technical leadership.
           </p>
         </div>
         <div className="flex items-center gap-3">
