@@ -81,23 +81,23 @@ export function HowItWorks() {
   const guarantees = [
     {
       icon: Lock,
-      title: 'Escrow Protection',
-      desc: 'Your payment is safely held in escrow and released only after you review and approve each completed milestone.'
+      title: t('guarantee_escrow_title', 'Escrow Protection'),
+      desc: t('guarantee_escrow_desc', 'Your payment is safely held in escrow and released only after you review and approve each completed milestone.')
     },
     {
       icon: FileText,
-      title: 'Itemized Pricing',
-      desc: 'No hidden fees or ambiguous quotes. Every feature and task has a clear itemized breakdown.'
+      title: t('guarantee_itemized_title', 'Itemized Pricing'),
+      desc: t('guarantee_itemized_desc', 'No hidden fees or ambiguous quotes. Every feature and task has a clear itemized breakdown.')
     },
     {
       icon: MessageSquare,
-      title: 'Direct Communication',
-      desc: 'Communicate directly with your assigned Technical Lead anytime via built-in workspace messaging.'
+      title: t('guarantee_direct_title', 'Direct Communication'),
+      desc: t('guarantee_direct_desc', 'Communicate directly with your assigned Technical Lead anytime via built-in workspace messaging.')
     },
     {
       icon: CreditCard,
-      title: 'Secure Transactions',
-      desc: 'Enterprise-grade encryption and verified transaction records for complete peace of mind.'
+      title: t('guarantee_secure_title', 'Secure Transactions'),
+      desc: t('guarantee_secure_desc', 'Enterprise-grade encryption and verified transaction records for complete peace of mind.')
     }
   ];
 

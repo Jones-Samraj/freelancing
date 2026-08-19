@@ -49,6 +49,22 @@
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
+
+  html[lang="ta"] body {
+    font-family: 'Noto Sans Tamil', 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.65;
+    letter-spacing: 0.01em;
+  }
+
+  html[lang="hi"] body {
+    font-family: 'Noto Sans Devanagari', 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.65;
+  }
+
+  html[lang="ar"] body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif;
+    line-height: 1.7;
+  }
 }
 
 /* Glass panels */
