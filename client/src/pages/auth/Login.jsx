@@ -3,9 +3,11 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Layers, Mail, Lock, ArrowRight, ShieldCheck, UserCheck, AlertCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { Button, Input, Card, Alert } from '../../components/common';
+import { useLanguage } from '../../context/LanguageContext';
 
 export function Login() {
   const { login } = useAuth();
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -64,30 +66,30 @@ export function Login() {
             </Link>
 
             <h2 className="mt-8 text-2xl sm:text-3xl font-black leading-tight">
-              Enterprise Tech Delivery.
+              {t('login_enterprise_title')}
             </h2>
             <p className="mt-3 text-xs text-blue-100 leading-relaxed">
-              Log in to manage active software projects, review proposals, approve milestones, and communicate directly with technical management.
+              {t('login_enterprise_desc')}
             </p>
           </div>
 
           {/* Demo account quick login helper */}
           <div className="relative z-10 mt-8 pt-6 border-t border-white/20 space-y-2">
-            <p className="text-[11px] font-bold uppercase tracking-wider text-blue-200">Quick Demo Access:</p>
+            <p className="text-[11px] font-bold uppercase tracking-wider text-blue-200">{t('login_demo_access')}</p>
             <div className="flex flex-col sm:flex-row gap-2">
               <button
                 type="button"
                 onClick={() => handleDemoFill('admin')}
                 className="flex-1 py-1.5 px-3 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
               >
-                <ShieldCheck className="w-3.5 h-3.5" /> Demo Admin
+                <ShieldCheck className="w-3.5 h-3.5" /> {t('login_demo_admin')}
               </button>
               <button
                 type="button"
                 onClick={() => handleDemoFill('user')}
                 className="flex-1 py-1.5 px-3 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
               >
-                <UserCheck className="w-3.5 h-3.5" /> Demo Client
+                <UserCheck className="w-3.5 h-3.5" /> {t('login_demo_client')}
               </button>
             </div>
           </div>
@@ -96,9 +98,9 @@ export function Login() {
         {/* Right Form Panel */}
         <div className="lg:col-span-7 p-8 sm:p-10 flex flex-col justify-center">
           <div className="mb-6">
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Welcome back</h3>
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">{t('login_welcome')}</h3>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              Please enter your account credentials to continue
+              {t('login_subtitle')}
             </p>
           </div>
 
@@ -110,7 +112,7 @@ export function Login() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <Input
-              label="Email Address"
+              label={t('login_email')}
               type="email"
               required
               icon={Mail}
@@ -121,7 +123,7 @@ export function Login() {
 
             <div>
               <Input
-                label="Password"
+                label={t('login_password')}
                 type="password"
                 required
                 icon={Lock}
@@ -134,7 +136,7 @@ export function Login() {
                   to="/forgot-password"
                   className="text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline"
                 >
-                  Forgot password?
+                  {t('login_forgot')}
                 </Link>
               </div>
             </div>
@@ -146,14 +148,14 @@ export function Login() {
               isLoading={isLoading}
               icon={ArrowRight}
             >
-              Sign In to Uzhaipu
+              {t('login_btn')}
             </Button>
           </form>
 
           <p className="mt-8 text-center text-xs text-slate-600 dark:text-slate-400">
-            Don't have an account yet?{' '}
+            {t('login_no_account')}{' '}
             <Link to="/register" className="font-bold text-blue-600 dark:text-blue-400 hover:underline">
-              Create Client Account
+              {t('login_create_account')}
             </Link>
           </p>
         </div>

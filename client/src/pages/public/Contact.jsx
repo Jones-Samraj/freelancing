@@ -3,8 +3,10 @@ import { Mail, Send, CheckCircle2, Phone, MapPin, Clock } from 'lucide-react';
 import { Button, Input, Textarea, Card, Alert, GithubIcon, LinkedinIcon } from '../../components/common';
 import { siteConfig } from '../../config/siteConfig';
 import { adminService } from '../../services/adminService';
+import { useLanguage } from '../../context/LanguageContext';
 
 export function Contact() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -28,11 +30,11 @@ export function Contact() {
     try {
       const res = await adminService.submitContact(formData);
       if (res.success) {
-        setSuccessMsg(res.message || 'Thank you! Your message has been sent. We will respond shortly.');
+        setSuccessMsg(res.message || t('contact_success'));
         setFormData({ name: '', email: '', subject: '', message: '' });
       }
     } catch (err) {
-      setErrorMsg(err.response?.data?.message || 'Failed to submit contact message. Please try again.');
+      setErrorMsg(err.response?.data?.message || t('contact_error'));
     } finally {
       setIsLoading(false);
     }
@@ -41,12 +43,12 @@ export function Contact() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12 animate-fade-in">
       <div className="text-center max-w-2xl mx-auto">
-        <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Get In Touch</span>
+        <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">{t('contact_eyebrow')}</span>
         <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white mt-2">
-          Have a project in mind?
+          {t('contact_title')}
         </h1>
         <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-          Reach out to our technical leadership directly. We typically respond within 2-4 business hours.
+          {t('contact_desc')}
         </p>
       </div>
 
@@ -54,16 +56,16 @@ export function Contact() {
         {/* Contact info card */}
         <div className="lg:col-span-5 space-y-6">
           <Card className="p-6 sm:p-8 space-y-6 bg-gradient-to-br from-slate-900 to-slate-950 text-white border-slate-800">
-            <h3 className="text-xl font-bold">Contact Channels</h3>
+            <h3 className="text-xl font-bold">{t('contact_channels')}</h3>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Connect with our solutions team for technical reviews, RFPs, enterprise support agreements, or architecture consultations.
+              {t('contact_channels_desc')}
             </p>
 
             <div className="space-y-4 text-xs">
               <div className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-bold text-slate-200">Email Us</p>
+                  <p className="font-bold text-slate-200">{t('contact_email_us')}</p>
                   <a href={`mailto:${siteConfig.contact.email}`} className="text-slate-400 hover:text-white transition-colors">
                     {siteConfig.contact.email}
                   </a>
@@ -73,7 +75,7 @@ export function Contact() {
               <div className="flex items-start gap-3">
                 <Clock className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-bold text-slate-200">Working Hours</p>
+                  <p className="font-bold text-slate-200">{t('contact_working_hours')}</p>
                   <p className="text-slate-400">{siteConfig.contact.hours}</p>
                 </div>
               </div>
@@ -81,14 +83,14 @@ export function Contact() {
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-bold text-slate-200">Headquarters</p>
+                  <p className="font-bold text-slate-200">{t('contact_headquarters')}</p>
                   <p className="text-slate-400">{siteConfig.contact.address}</p>
                 </div>
               </div>
             </div>
 
             <div className="pt-6 border-t border-slate-800 space-y-2">
-              <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Official Links</p>
+              <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">{t('contact_official_links')}</p>
               <div className="flex items-center gap-3">
                 <a
                   href={siteConfig.contact.linkedin}
@@ -114,7 +116,7 @@ export function Contact() {
         {/* Contact Form */}
         <div className="lg:col-span-7">
           <Card className="p-6 sm:p-8">
-            <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-4">Send a Direct Message</h3>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-4">{t('contact_send_message')}</h3>
 
             {successMsg && (
               <Alert variant="success" className="mb-4">
@@ -131,7 +133,7 @@ export function Contact() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Input
-                  label="Your Name"
+                  label={t('contact_your_name')}
                   name="name"
                   required
                   value={formData.name}
@@ -139,7 +141,7 @@ export function Contact() {
                   placeholder="John Doe"
                 />
                 <Input
-                  label="Email Address"
+                  label={t('contact_email_address')}
                   name="email"
                   type="email"
                   required
@@ -150,7 +152,7 @@ export function Contact() {
               </div>
 
               <Input
-                label="Subject"
+                label={t('contact_subject')}
                 name="subject"
                 required
                 value={formData.subject}
@@ -159,7 +161,7 @@ export function Contact() {
               />
 
               <Textarea
-                label="Message / Requirements"
+                label={t('contact_message_label')}
                 name="message"
                 required
                 rows={5}
@@ -169,7 +171,7 @@ export function Contact() {
               />
 
               <Button type="submit" size="lg" icon={Send} isLoading={isLoading} className="w-full">
-                Send Message
+                {t('contact_send_btn')}
               </Button>
             </form>
           </Card>

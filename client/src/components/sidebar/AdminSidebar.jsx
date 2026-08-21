@@ -17,36 +17,38 @@ import {
   Mail,
   ShieldCheck
 } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 
 export function AdminSidebar() {
+  const { t } = useLanguage();
   const sections = [
     {
-      title: 'Operations',
+      title: t('admin_operations'),
       links: [
-        { name: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
-        { name: 'Projects & Requests', path: '/admin/projects', icon: FolderKanban },
-        { name: 'Quotations', path: '/admin/quotations', icon: FileText },
-        { name: 'Milestones', path: '/admin/milestones', icon: Milestone },
-        { name: 'Payments & Revenue', path: '/admin/payments', icon: CreditCard },
-        { name: 'Messages', path: '/admin/messages', icon: MessageSquare },
+        { name: t('admin_sidebar_dashboard'), path: '/admin/dashboard', icon: LayoutDashboard },
+        { name: t('admin_sidebar_projects'), path: '/admin/projects', icon: FolderKanban },
+        { name: t('admin_sidebar_quotations'), path: '/admin/quotations', icon: FileText },
+        { name: t('admin_sidebar_milestones'), path: '/admin/milestones', icon: Milestone },
+        { name: t('admin_sidebar_payments'), path: '/admin/payments', icon: CreditCard },
+        { name: t('admin_sidebar_messages'), path: '/admin/messages', icon: MessageSquare },
       ]
     },
     {
-      title: 'Management',
+      title: t('admin_management'),
       links: [
-        { name: 'Users & Clients', path: '/admin/users', icon: Users },
-        { name: 'Reviews', path: '/admin/reviews', icon: Star },
-        { name: 'Contact Inquiries', path: '/admin/contact-messages', icon: Mail },
-        { name: 'Reports & Analytics', path: '/admin/reports', icon: BarChart3 },
+        { name: t('admin_sidebar_users'), path: '/admin/users', icon: Users },
+        { name: t('admin_sidebar_reviews'), path: '/admin/reviews', icon: Star },
+        { name: t('admin_sidebar_contact'), path: '/admin/contact-messages', icon: Mail },
+        { name: t('admin_sidebar_reports'), path: '/admin/reports', icon: BarChart3 },
       ]
     },
     {
-      title: 'Platform Config',
+      title: t('admin_platform_config'),
       links: [
-        { name: 'Categories', path: '/admin/categories', icon: Layers },
-        { name: 'Skills & Tech', path: '/admin/skills', icon: Cpu },
-        { name: 'Countries', path: '/admin/countries', icon: Globe2 },
-        { name: 'Settings', path: '/admin/settings', icon: Settings },
+        { name: t('admin_sidebar_categories'), path: '/admin/categories', icon: Layers },
+        { name: t('admin_sidebar_skills'), path: '/admin/skills', icon: Cpu },
+        { name: t('admin_sidebar_countries'), path: '/admin/countries', icon: Globe2 },
+        { name: t('admin_sidebar_settings'), path: '/admin/settings', icon: Settings },
       ]
     }
   ];
@@ -55,7 +57,7 @@ export function AdminSidebar() {
     <aside className="w-64 shrink-0 hidden lg:block bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 p-4 min-h-[calc(100vh-4rem)]">
       <div className="flex items-center gap-2 px-3 py-2 mb-3 bg-purple-50 dark:bg-purple-950/40 rounded-xl border border-purple-200 dark:border-purple-800/40">
         <ShieldCheck className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-        <span className="text-xs font-bold text-purple-700 dark:text-purple-300">Admin Control Center</span>
+        <span className="text-xs font-bold text-purple-700 dark:text-purple-300">{t('admin_control_center')}</span>
       </div>
 
       <div className="space-y-5">

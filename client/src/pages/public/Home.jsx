@@ -242,13 +242,13 @@ export function Home() {
       ═══════════════════════════════════════ */}
       <div className="py-8 border-b border-slate-200/80 dark:border-slate-800 overflow-hidden bg-white dark:bg-slate-900/60">
         <p className="text-center text-[11px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-5">
-          Technologies We Master
+          {t('home_tech_we_master', 'Technologies We Master')}
         </p>
         <div className="flex gap-6 overflow-hidden">
           <div className="flex gap-6 shrink-0 animate-marquee">
-            {[...trustedLogos, ...trustedLogos].map((t, i) => (
+            {[...trustedLogos, ...trustedLogos].map((logo, i) => (
               <span key={i} className="px-5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-600 dark:text-slate-300 whitespace-nowrap hover:bg-blue-50 dark:hover:bg-blue-950/50 hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-default">
-                {t}
+                {logo}
               </span>
             ))}
           </div>
@@ -286,10 +286,10 @@ export function Home() {
                     <Icon className="w-5 h-5" />
                   </div>
                   <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-2">
-                    {type.title}
+                    {t(`type_${type.id}`, type.title)}
                   </h3>
                   <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                    {type.description}
+                    {t(`ptype_${type.id}_desc`, type.description)}
                   </p>
                   <div className="mt-3 flex flex-wrap gap-1">
                     {type.examples.slice(0, 3).map(ex => (
@@ -386,9 +386,9 @@ export function Home() {
       <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { icon: ShieldCheck, title: 'Escrow-Protected Payments', desc: 'Client funds held safely in escrow, released only upon milestone sign-off. Zero risk.', color: 'text-emerald-600', bg: 'bg-emerald-50 dark:bg-emerald-950/50' },
-            { icon: Zap, title: 'Itemized Quotations', desc: 'Line-by-line proposals with transparent pricing. No vague bulk totals. Accept or negotiate.', color: 'text-blue-600', bg: 'bg-blue-50 dark:bg-blue-950/50' },
-            { icon: Clock, title: 'Real-Time Tracking', desc: 'Live milestone progress bars, task checklists, and direct admin messaging — 24/7.', color: 'text-purple-600', bg: 'bg-purple-50 dark:bg-purple-950/50' }
+            { icon: ShieldCheck, title: t('home_escrow_title'), desc: t('home_escrow_desc'), color: 'text-emerald-600', bg: 'bg-emerald-50 dark:bg-emerald-950/50' },
+            { icon: Zap, title: t('home_itemized_title'), desc: t('home_itemized_desc'), color: 'text-blue-600', bg: 'bg-blue-50 dark:bg-blue-950/50' },
+            { icon: Clock, title: t('home_tracking_title'), desc: t('home_tracking_desc'), color: 'text-purple-600', bg: 'bg-purple-50 dark:bg-purple-950/50' }
           ].map((f, i) => {
             const Icon = f.icon;
             return (
@@ -482,7 +482,7 @@ export function Home() {
               </p>
 
               <div className="mt-5 flex flex-wrap gap-3 justify-center lg:justify-start text-xs text-blue-200">
-                {['✓ No hidden fees', '✓ Escrow-protected', '✓ Direct admin chat', '✓ Milestone-based'].map(f => (
+                {[t('home_no_hidden_fees'), t('home_escrow_protected'), t('home_direct_chat'), t('home_milestone_based')].map(f => (
                   <span key={f} className="font-semibold">{f}</span>
                 ))}
               </div>

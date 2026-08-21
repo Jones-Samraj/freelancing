@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { Clock, DollarSign, ArrowRight, FileText, CheckCircle2, MessageSquare } from 'lucide-react';
 import { Card, Badge } from '../common';
 import { ProjectStatusBadge, ProjectTypeBadge } from './ProjectStatusBadge';
+import { useLanguage } from '../../context/LanguageContext';
 
 export function ProjectCard({ project, isAdmin = false }) {
+  const { t } = useLanguage();
   const detailLink = isAdmin ? `/admin/projects/${project.id}` : `/projects/${project.id}`;
 
   return (
@@ -53,7 +55,7 @@ export function ProjectCard({ project, isAdmin = false }) {
         {['in_progress', 'completed'].includes(project.status) && (
           <div className="mb-3">
             <div className="flex justify-between text-[11px] font-semibold text-slate-500 mb-1">
-              <span>Progress</span>
+              <span>{t('card_progress')}</span>
               <span>{project.progress_percentage || 0}%</span>
             </div>
             <div className="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
@@ -73,7 +75,7 @@ export function ProjectCard({ project, isAdmin = false }) {
                 ? `${project.currency || 'USD'} ${Number(project.budget_min).toLocaleString()} - ${Number(project.budget_max).toLocaleString()}`
                 : project.budget_min
                 ? `${project.currency || 'USD'} ${Number(project.budget_min).toLocaleString()}`
-                : 'Custom'}
+                : t('card_custom')}
             </span>
           </div>
 
@@ -81,7 +83,7 @@ export function ProjectCard({ project, isAdmin = false }) {
             to={detailLink}
             className="inline-flex items-center gap-1 text-xs font-bold text-blue-600 dark:text-blue-400 hover:gap-1.5 transition-all"
           >
-            <span>{isAdmin ? 'Manage' : 'View Details'}</span>
+            <span>{isAdmin ? t('card_manage') : t('card_view_details')}</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>

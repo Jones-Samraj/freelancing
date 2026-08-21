@@ -19,9 +19,11 @@ import { quotationService } from '../../services/quotationService';
 import { paymentService } from '../../services/paymentService';
 import { StatCard, Card, Button, Badge, Loader } from '../../components/common';
 import { ProjectCard } from '../../components/project/ProjectCard';
+import { useLanguage } from '../../context/LanguageContext';
 
 export function Dashboard() {
   const { user } = useAuth();
+  const { t } = useLanguage();
   const [projects, setProjects] = useState([]);
   const [quotations, setQuotations] = useState([]);
   const [payments, setPayments] = useState([]);
@@ -56,7 +58,7 @@ export function Dashboard() {
   }, []);
 
   if (loading) {
-    return <Loader size="lg" text="Loading your projects..." />;
+    return <Loader size="lg" text={t('dash_loading')} />;
   }
 
   // Calculate statistics
@@ -74,18 +76,18 @@ export function Dashboard() {
       {/* Welcome Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl p-6 sm:p-8 text-white shadow-xl shadow-blue-500/15">
         <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-blue-200">Client Workspace</span>
+          <span className="text-xs font-bold uppercase tracking-wider text-blue-200">{t('dash_workspace')}</span>
           <h1 className="text-2xl sm:text-3xl font-black mt-1">
-            Good day, {firstName} 👋
+            {t('dash_greeting')} {firstName} 👋
           </h1>
           <p className="text-xs sm:text-sm text-blue-100 mt-1 max-w-xl">
-            Track your ongoing builds, review official quotations, and manage milestone delivery directly with Uzhaipu technical leadership.
+            {t('dash_desc')}
           </p>
         </div>
         <div className="flex items-center gap-3">
           <Link to="/projects/create">
             <Button size="md" className="bg-white text-blue-600 hover:bg-blue-50 border-transparent font-bold" icon={PlusCircle}>
-              Post a Project
+              {t('dash_post_project')}
             </Button>
           </Link>
         </div>
@@ -94,25 +96,25 @@ export function Dashboard() {
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
-          title="Active Projects"
+          title={t('dash_active')}
           value={activeProjects.length}
           icon={FolderKanban}
           color="blue"
         />
         <StatCard
-          title="Completed Projects"
+          title={t('dash_completed')}
           value={completedProjects.length}
           icon={CheckCircle2}
           color="green"
         />
         <StatCard
-          title="Pending Quotations"
+          title={t('dash_pending_quotes')}
           value={pendingQuotations.length}
           icon={FileText}
           color="purple"
         />
         <StatCard
-          title="Total Invested"
+          title={t('dash_total_invested')}
           value={`$${totalSpent.toLocaleString()}`}
           icon={CreditCard}
           color="amber"
@@ -128,16 +130,16 @@ export function Dashboard() {
             </div>
             <div>
               <h4 className="text-xs font-bold text-purple-900 dark:text-purple-200">
-                You have {pendingQuotations.length} new quotation(s) ready for review!
+                You have {pendingQuotations.length} {t('dash_quote_alert_title')}
               </h4>
               <p className="text-[11px] text-purple-700 dark:text-purple-300">
-                Review the line-item deliverables and pricing to accept and initiate development.
+                {t('dash_quote_alert_desc')}
               </p>
             </div>
           </div>
           <Link to={`/quotations/${pendingQuotations[0].id}`}>
             <Button size="sm" variant="primary" className="bg-purple-600 hover:bg-purple-700 text-white shrink-0">
-              Review Quote
+              {t('dash_review_quote')}
             </Button>
           </Link>
         </Card>
@@ -148,22 +150,22 @@ export function Dashboard() {
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
             <FolderKanban className="w-5 h-5 text-blue-600" />
-            My Active Projects
+            {t('dash_my_projects')}
           </h2>
           <Link to="/projects" className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
-            View all projects <ArrowRight className="w-3.5 h-3.5" />
+            {t('dash_view_all')} <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
         {projects.length === 0 ? (
           <Card className="p-10 text-center space-y-3">
             <FolderKanban className="w-10 h-10 text-slate-300 mx-auto" />
-            <h3 className="text-base font-bold text-slate-800 dark:text-slate-200">No projects posted yet</h3>
+            <h3 className="text-base font-bold text-slate-800 dark:text-slate-200">{t('dash_no_projects')}</h3>
             <p className="text-xs text-slate-500 max-w-sm mx-auto">
-              Ready to build something great? Post your technical requirements to receive a comprehensive proposal.
+              {t('dash_no_projects_desc')}
             </p>
             <Link to="/projects/create" className="inline-block mt-2">
-              <Button size="md" icon={PlusCircle}>Post Your First Project</Button>
+              <Button size="md" icon={PlusCircle}>{t('dash_post_first')}</Button>
             </Link>
           </Card>
         ) : (
@@ -181,7 +183,7 @@ export function Dashboard() {
         <Card className="p-6 space-y-4">
           <h3 className="text-base font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-blue-600" />
-            Quick Actions
+            {t('dash_quick_actions')}
           </h3>
           <div className="space-y-2">
             <Link
@@ -190,7 +192,7 @@ export function Dashboard() {
             >
               <div className="flex items-center gap-2.5">
                 <PlusCircle className="w-4 h-4 text-blue-600" />
-                <span>Post a New Request</span>
+                <span>{t('dash_post_new')}</span>
               </div>
               <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
             </Link>
@@ -201,7 +203,7 @@ export function Dashboard() {
             >
               <div className="flex items-center gap-2.5">
                 <FileText className="w-4 h-4 text-purple-600" />
-                <span>View Quotations</span>
+                <span>{t('dash_view_quotations')}</span>
               </div>
               <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
             </Link>
@@ -212,7 +214,7 @@ export function Dashboard() {
             >
               <div className="flex items-center gap-2.5">
                 <MessageSquare className="w-4 h-4 text-emerald-600" />
-                <span>Contact Tech Admin</span>
+                <span>{t('dash_contact_admin')}</span>
               </div>
               <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
             </Link>
@@ -223,7 +225,7 @@ export function Dashboard() {
         <Card className="lg:col-span-2 p-6 space-y-4">
           <h3 className="text-base font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
             <Clock className="w-4 h-4 text-blue-600" />
-            Platform Activity Stream
+            {t('dash_activity')}
           </h3>
           <div className="divide-y divide-slate-100 dark:divide-slate-800 text-xs space-y-3">
             {projects.slice(0, 4).map((p) => (
@@ -232,10 +234,10 @@ export function Dashboard() {
                   <span className="w-2 h-2 rounded-full bg-blue-500 mt-1.5 shrink-0" />
                   <div>
                     <p className="font-semibold text-slate-900 dark:text-slate-100">
-                      Project "{p.title}"
+                      {t('dash_project_label')} "{p.title}"
                     </p>
                     <p className="text-[11px] text-slate-500">
-                      Current Status: <span className="capitalize font-bold text-blue-600 dark:text-blue-400">{p.status.replace('_', ' ')}</span>
+                      {t('dash_current_status')} <span className="capitalize font-bold text-blue-600 dark:text-blue-400">{p.status.replace('_', ' ')}</span>
                     </p>
                   </div>
                 </div>

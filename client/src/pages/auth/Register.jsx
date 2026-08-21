@@ -4,10 +4,12 @@ import { Layers, Mail, Lock, User, Globe2, ArrowRight, ShieldCheck, CheckSquare,
 import { useAuth } from '../../context/AuthContext';
 import { userService } from '../../services/userService';
 import { Button, Input, Select, Card, Alert } from '../../components/common';
+import { useLanguage } from '../../context/LanguageContext';
 
 export function Register() {
   const { register } = useAuth();
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const [countries, setCountries] = useState([]);
   const [formData, setFormData] = useState({
@@ -45,17 +47,17 @@ export function Register() {
     setError('');
 
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match.');
+      setError(t('reg_pwd_mismatch'));
       return;
     }
 
     if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters long.');
+      setError(t('reg_pwd_length'));
       return;
     }
 
     if (!formData.agreeTerms) {
-      setError('You must agree to the Terms of Service & Privacy Policy.');
+      setError(t('reg_agree_required'));
       return;
     }
 
@@ -71,7 +73,7 @@ export function Register() {
       });
       navigate('/dashboard', { replace: true });
     } catch (err) {
-      setError(err.response?.data?.message || err.message || 'Registration failed. Please try again.');
+      setError(err.response?.data?.message || err.message || t('reg_failed'));
     } finally {
       setIsLoading(false);
     }
@@ -96,25 +98,25 @@ export function Register() {
             </Link>
 
             <h2 className="mt-8 text-2xl sm:text-3xl font-black leading-tight">
-              Start Your Project with Uzhaipu.
+              {t('reg_title')}
             </h2>
             <p className="mt-3 text-xs text-blue-100 leading-relaxed">
-              Create a free Client account to post requirements, get detailed quotations, track development milestones, and collaborate seamlessly with our technical execution leads.
+              {t('reg_desc')}
             </p>
           </div>
 
           <div className="relative z-10 mt-8 pt-6 border-t border-white/20 space-y-2 text-xs text-blue-100">
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-emerald-300 shrink-0" />
-              <span>Dedicated Technical Lead Assignment</span>
+              <span>{t('reg_feature1')}</span>
             </div>
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-emerald-300 shrink-0" />
-              <span>Transparent Line-Item Quotations</span>
+              <span>{t('reg_feature2')}</span>
             </div>
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-emerald-300 shrink-0" />
-              <span>100% Escrow Milestone Protection</span>
+              <span>{t('reg_feature3')}</span>
             </div>
           </div>
         </div>
@@ -122,9 +124,9 @@ export function Register() {
         {/* Right Form Panel */}
         <div className="lg:col-span-7 p-8 sm:p-10 flex flex-col justify-center">
           <div className="mb-6">
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Create Client Account</h3>
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">{t('reg_form_title')}</h3>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              Join Uzhaipu to post projects and receive quotes
+              {t('reg_form_desc')}
             </p>
           </div>
 
@@ -136,7 +138,7 @@ export function Register() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <Input
-              label="Full Name"
+              label={t('reg_full_name')}
               name="name"
               required
               icon={User}
@@ -146,7 +148,7 @@ export function Register() {
             />
 
             <Input
-              label="Email Address"
+              label={t('reg_email')}
               name="email"
               type="email"
               required
@@ -159,7 +161,7 @@ export function Register() {
             {/* Country / Region Dropdown */}
             <div className="space-y-1.5">
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
-                Choose your country or region <span className="text-rose-500">*</span>
+                {t('reg_country')} <span className="text-rose-500">*</span>
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
@@ -183,7 +185,7 @@ export function Register() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Input
-                label="Password"
+                label={t('reg_password')}
                 name="password"
                 type="password"
                 required
@@ -194,7 +196,7 @@ export function Register() {
               />
 
               <Input
-                label="Confirm Password"
+                label={t('reg_confirm_password')}
                 name="confirmPassword"
                 type="password"
                 required
@@ -216,7 +218,7 @@ export function Register() {
                 className="w-4 h-4 rounded text-blue-600 focus:ring-blue-500 cursor-pointer"
               />
               <label htmlFor="agreeTerms" className="text-xs text-slate-600 dark:text-slate-400 cursor-pointer select-none">
-                I agree to the <a href="#" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">Terms of Service</a> and <a href="#" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">Privacy Policy</a>.
+                {t('reg_agree')} <a href="#" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">{t('reg_terms')}</a> {t('reg_and')} <a href="#" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">{t('reg_privacy')}</a>.
               </label>
             </div>
 
@@ -227,14 +229,14 @@ export function Register() {
               isLoading={isLoading}
               icon={ArrowRight}
             >
-              Create Account
+              {t('reg_btn')}
             </Button>
           </form>
 
           <p className="mt-6 text-center text-xs text-slate-600 dark:text-slate-400">
-            Already have an account?{' '}
+            {t('reg_has_account')}{' '}
             <Link to="/login" className="font-bold text-blue-600 dark:text-blue-400 hover:underline">
-              Sign In
+              {t('reg_sign_in')}
             </Link>
           </p>
         </div>

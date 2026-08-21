@@ -309,7 +309,23 @@ export const translations = {
     ptype_consulting_tag: 'Strategic Architecture',
     ptype_consulting_desc: 'Software architecture reviews, cloud migration strategies, tech stack selection, database design, and scalability planning.',
     ptype_other_tag: 'Custom Solutions',
-    ptype_other_desc: 'Have a unique technical challenge or specialized pipeline requirement? Tell us what you need and we will structure a custom roadmap.'
+    ptype_other_desc: 'Have a unique technical challenge or specialized pipeline requirement? Tell us what you need and we will structure a custom roadmap.',
+
+    // Footer
+    footer_brand_desc: 'A managed tech service platform connecting clients with a dedicated expert team. Build, support, and maintain software — professionally.',
+    footer_platform: 'Platform',
+    footer_how_it_works: 'How It Works',
+    footer_post_project: 'Post a Project',
+    footer_track_progress: 'Track Progress',
+    footer_pricing: 'Pricing',
+    footer_services: 'Services',
+    footer_company: 'Company',
+    footer_about: 'About',
+    footer_contact: 'Contact',
+    footer_privacy: 'Privacy Policy',
+    footer_terms: 'Terms of Service',
+    footer_copyright: 'All rights reserved.',
+    footer_tagline: 'Build. Support. Maintain.'
   },
   ta: {
     // Nav
@@ -609,7 +625,23 @@ export const translations = {
     ptype_consulting_tag: 'மூலோபாய கட்டமைப்பு',
     ptype_consulting_desc: 'மென்பொருள் கட்டமைப்பு ஆய்வுகள், கிளவுட் இடம்பெயர்வு உத்திகள், தொழில்நுட்ப தேர்வு மற்றும் அளவிடுதல் திட்டமிடல்.',
     ptype_other_tag: 'தனிப்பயன் தீர்வுகள்',
-    ptype_other_desc: 'தனித்துவமான தொழில்நுட்ப சவால் உள்ளதா? உங்களுக்கு என்ன தேவை என்று சொல்லுங்கள், தனிப்பயன் திட்டவரைவை உருவாக்குவோம்.'
+    ptype_other_desc: 'தனித்துவமான தொழில்நுட்ப சவால் உள்ளதா? உங்களுக்கு என்ன தேவை என்று சொல்லுங்கள், தனிப்பயன் திட்டவரைவை உருவாக்குவோம்.',
+
+    // Footer
+    footer_brand_desc: 'வாடிக்கையாளர்களை பிரத்யேக நிபுணர் குழுவுடன் இணைக்கும் மேலாண்மை தொழில்நுட்ப சேவை தளம். மென்பொருளை கட்டமைக்கவும், ஆதரிக்கவும், பராமரிக்கவும்.',
+    footer_platform: 'தளம்',
+    footer_how_it_works: 'செயல்முறை',
+    footer_post_project: 'திட்டத்தை பதிவு செய்க',
+    footer_track_progress: 'முன்னேற்றத்தை கண்காணிக்க',
+    footer_pricing: 'விலை நிர்ணயம்',
+    footer_services: 'சேவைகள்',
+    footer_company: 'நிறுவனம்',
+    footer_about: 'எங்களைப் பற்றி',
+    footer_contact: 'தொடர்புகொள்ள',
+    footer_privacy: 'தனியுரிமைக் கொள்கை',
+    footer_terms: 'சேவை விதிமுறைகள்',
+    footer_copyright: 'அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.',
+    footer_tagline: 'உருவாக்கம். ஆதரவு. பராமரிப்பு.'
   },
   hi: {
     // Nav
