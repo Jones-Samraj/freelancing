@@ -1,31 +1,67 @@
 # Dependencies
 node_modules/
+/.pnp
+.pnp.js
+
+# Environment Variables & Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+*.crt
+
+# Production & Build Artifacts
+dist/
+build/
+.cache/
+
+# Logs & Diagnostics
+logs/
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
-# Environment & Secrets
-.env
-.env.local
-.env.production
-.env.staging
-
-# File Uploads / Temp Storage
-uploads/*
-!uploads/.gitkeep
-
-# Logs & Traces
-logs/
-*.log
-
-# Runtime & Process artifacts
-pids
+# Runtime & Process Artifacts
+pids/
 *.pid
 *.seed
 *.pid.lock
 
-# OS Files
+# Testing & Coverage
+coverage/
+.nyc_output/
+*.lcov
+test-results/
+
+# File Uploads & Temp Storage
+uploads/**/*
+!uploads/**/
+!uploads/**/.gitkeep
+tmp/
+temp/
+
+# IDE & Editor Settings
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+
+# OS Generated Files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+desktop.ini
