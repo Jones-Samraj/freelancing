@@ -1,6 +1,7 @@
 import React from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Navbar } from '../components/navbar/Navbar';
+import { PageTransition } from '../components/common/PageTransition';
 import { Mail, MapPin, Clock } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, TwitterIcon } from '../components/common';
 import { siteConfig } from '../config/siteConfig';
@@ -13,7 +14,7 @@ export function PublicLayout() {
       <Navbar />
 
       <main className="flex-1">
-        <Outlet />
+        <PageTransition />
       </main>
 
       {/* Footer */}

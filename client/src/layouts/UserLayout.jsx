@@ -1,9 +1,10 @@
 import React from 'react';
-import { Outlet, Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Navbar } from '../components/navbar/Navbar';
 import { Sidebar } from '../components/sidebar/Sidebar';
 import { Loader } from '../components/common';
+import { PageTransition } from '../components/common/PageTransition';
 
 export function UserLayout() {
   const { user, isAuthenticated, loading } = useAuth();
@@ -27,7 +28,7 @@ export function UserLayout() {
       <div className="flex-1 flex max-w-7xl w-full mx-auto">
         <Sidebar />
         <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto max-w-full">
-          <Outlet />
+          <PageTransition />
         </main>
       </div>
     </div>

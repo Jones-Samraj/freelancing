@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 export function Input({
   label,
@@ -10,6 +10,19 @@ export function Input({
   required = false,
   ...props
 }) {
+  const wrapperRef = useRef(null);
+
+  // Fire the shake animation each time a new error appears
+  useEffect(() => {
+    if (!error || !wrapperRef.current) return;
+    const el = wrapperRef.current;
+    el.classList.remove('input-error-shake');
+    // Force reflow so removing+re-adding works
+    void el.offsetWidth;
+    el.classList.add('input-error-shake');
+    const timer = setTimeout(() => el.classList.remove('input-error-shake'), 400);
+    return () => clearTimeout(timer);
+  }, [error]);
   return (
     <div className="w-full space-y-1.5">
       {label && (
@@ -17,7 +30,7 @@ export function Input({
           {label} {required && <span className="text-rose-500">*</span>}
         </label>
       )}
-      <div className="relative rounded-xl shadow-xs">
+      <div ref={wrapperRef} className="relative rounded-xl shadow-xs">
         {Icon && (
           <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
             <Icon className="w-4 h-4" />
@@ -25,7 +38,7 @@ export function Input({
         )}
         <input
           type={type}
-          className={`block w-full rounded-xl border bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors py-2.5 ${
+          className={`block w-full rounded-xl border bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none transition-colors py-2.5 input-focus-ring ${
             Icon ? 'pl-10' : 'pl-3.5'
           } pr-3.5 ${
             error
